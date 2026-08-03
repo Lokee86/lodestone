@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "profile": "library-engine",
+  "capabilities": ["stateful", "protocol"],
+  "docs_root": "docs",
+  "root_index": "docs/INDEX.md",
+  "folder_index": "INDEX.md",
+  "required_paths": [
+    "README.md",
+    "AGENTS.md",
+    "docs/INDEX.md",
+    "docs/documentation-policy.md",
+    "docs/documentation-procedure.md",
+    "docs/MAINTAINER_MAP.md",
+    "docs/planning/roadmap.md",
+    "docs/limits/current-limitations.md",
+    "docs/development/documentation-coverage.md",
+    "docs/BEHAVIORAL_CONTRACT_MATRIX.md"
+  ],
+  "index_exempt_directories": [],
+  "section_exemptions": ["README.md", "AGENTS.md", "docs/INDEX.md", "docs/**/INDEX.md"],
+  "required_sections": ["Purpose", "Overview", "Related docs", "Notes"],
+  "coverage": [
+    {
+      "paths": ["crates/**", "bindings/**"],
+      "docs": ["docs/development/documentation-coverage.md"]
+    }
+  ],
+  "change_rules": [
+    {
+      "paths": ["crates/core/src/object*.rs", "crates/core/src/format.rs"],
+      "docs": ["docs/STORAGE.md", "docs/OPERATIONS.md", "docs/BEHAVIORAL_CONTRACT_MATRIX.md"]
+    },
+    {
+      "paths": ["crates/core/src/materialize*.rs", "crates/core/src/snapshot.rs", "crates/core/src/search.rs"],
+      "docs": ["docs/SNAPSHOTS.md", "docs/ARCHITECTURE.md", "docs/OPERATIONS.md", "docs/BEHAVIORAL_CONTRACT_MATRIX.md"]
+    },
+    {
+      "paths": ["crates/ffi/**", "bindings/**"],
+      "docs": ["docs/ABI.md", "docs/OPERATIONS.md", "docs/BEHAVIORAL_CONTRACT_MATRIX.md"]
+    }
+  ]
+}

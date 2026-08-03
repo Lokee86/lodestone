@@ -82,6 +82,10 @@ See `crates/ffi/include/lodestone.h` for the exported contract. The Go module un
 
 The initial Lodestone release preserves the existing version-1 Grimoire object-address domain and snapshot magic. This allows existing Grimoire stores and snapshots to remain reusable after extraction. Those bytes are part of the immutable v1 format identity; future formats will use an explicit new version rather than silently rewriting existing data.
 
+## Documentation
+
+Focused architecture and operations documentation starts at [`docs/INDEX.md`](docs/INDEX.md).
+
 ## Verification
 
 ```bash
@@ -89,7 +93,20 @@ cargo fmt --all --check
 cargo test --workspace
 cargo clippy --workspace --all-targets -- -D warnings
 cargo build -p lodestone-ffi --release
+
+# Linux
+(
+  cd bindings/go
+  LODESTONE_LIBRARY="$PWD/../../target/release/liblodestone_ffi.so" go test ./... -count=1
+)
+
+# Windows PowerShell
+$env:LODESTONE_LIBRARY = "$pwd\target\release\lodestone_ffi.dll"
+Set-Location bindings/go
+go test ./... -count=1
 ```
+
+The Go binding loads the ABI dynamically on Windows and Linux. Linux requires cgo; unsupported platforms and Linux builds with `CGO_ENABLED=0` fail closed with `ErrUnavailable`.
 
 Version 1 stores aligned `float32` vectors. Quantized encodings are intentionally deferred until retrieval-quality and end-to-end latency benchmarks justify them.
 
