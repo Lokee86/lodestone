@@ -13,6 +13,7 @@ Lodestone is an embedded file-native vector database. Immutable objects preserve
 - [Architecture](ARCHITECTURE.md)
 - [Immutable object storage](STORAGE.md)
 - [Snapshot format and publication](SNAPSHOTS.md)
+- [Packed vector rows](PACKED_VECTORS.md)
 - [C ABI and language bindings](ABI.md)
 - [Operations and recovery](OPERATIONS.md)
 - [Maintainer map](MAINTAINER_MAP.md)

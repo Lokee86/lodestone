@@ -15,6 +15,7 @@ Storage and compatibility changes are cross-cutting even when the code edit is s
 | Object addressing, encoding, conflict handling | `crates/core/src/object.rs`, `object_format.rs`, `format.rs` | [Storage](STORAGE.md), decisions | Core object tests and compatibility fixtures |
 | Snapshot layout and materialization | `materialize.rs`, `materialize_format.rs` | [Snapshots](SNAPSHOTS.md) | Determinism, layout, failure, and migration tests |
 | Snapshot validation and mmap | `snapshot.rs`, format modules | [Snapshots](SNAPSHOTS.md), [Operations](OPERATIONS.md) | Corruption and boundary fixtures |
+| Generic packed row representation | `crates/packed/src/lib.rs` | [Packed vectors](PACKED_VECTORS.md), [Architecture](ARCHITECTURE.md) | `lodestone-packed` unit tests |
 | Exact search and ranking order | `search.rs` | [Architecture](ARCHITECTURE.md) | Search tests and benchmark evidence |
 | C ABI symbols, buffers, errors, handles | `crates/ffi/`, `lodestone.h` | [ABI](ABI.md) | FFI tests and consumer integration |
 | Go loading and platform discovery | `bindings/go/lodestone/` | [Go binding README](../bindings/go/README.md), [ABI](ABI.md) | Windows/Linux binding tests |

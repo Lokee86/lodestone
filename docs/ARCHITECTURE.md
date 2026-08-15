@@ -17,6 +17,7 @@ Lodestone separates immutable vector storage from materialized search state. App
 | Immutable objects and format identity | `crates/core/src/object*.rs` | Addressing, validation, encoding, durable write, conflict rejection, read |
 | Snapshot materialization and format | `crates/core/src/materialize*.rs` | Deterministic record ordering, matrix construction, temporary output, publication |
 | Snapshot validation and mmap lifecycle | `crates/core/src/snapshot.rs` and format modules | Header, offsets, identity, dimensions, bounds, mapping, metadata |
+| Generic packed rows | `crates/packed/src/lib.rs` | Scalar schema, fixed row width, contiguous row bytes, ordinal access; no persistence or embedding semantics |
 | Exact search | `crates/core/src/search.rs` | Query validation, serial/parallel scan, bounded top-K, deterministic result ordering |
 | C ABI | `crates/ffi/` and `lodestone.h` | Buffer ownership, error boundary, opaque handles, panic containment |
 | Go binding | `bindings/go/lodestone/` | Platform library discovery, symbol loading, Go-facing types and lifecycle |
@@ -40,6 +41,7 @@ The core crate owns storage and search semantics. Bindings adapt those semantics
 
 - **Authoritative immutable state:** object files addressed by format identity, embedding identity, and source identity.
 - **Derived immutable state:** materialized snapshots that reference object hashes and contain a search-ready vector matrix.
+- **Reusable representation state:** `PackedVectors` is an in-memory fixed-row byte matrix whose persistence and semantic identity are caller-owned.
 - **Process-local state:** validated memory maps and opaque snapshot handles.
 - **Application-owned state:** embeddings before ingestion, record selection, hybrid ranking, document metadata, and business policy.
 
@@ -64,6 +66,8 @@ Lodestone does not own:
 - document parsing, chunking, memory policy, or metadata authority;
 - lexical retrieval or hybrid reranking;
 - application-level record deletion policy beyond building a new snapshot;
+- quantization parameters, embedding profiles, or metrics for generic packed rows;
+- persistence/publication semantics for callers that embed `PackedVectors` in another container;
 - network service discovery or a daemon lifecycle.
 
 ## Related docs

@@ -167,6 +167,7 @@ version = "0.1.0"
 dependencies = [
  "blake3",
  "bytemuck",
+ "lodestone-packed",
  "memmap2",
  "rayon",
  "serde",
@@ -181,6 +182,10 @@ dependencies = [
  "lodestone-core",
  "tempfile",
 ]
+
+[[package]]
+name = "lodestone-packed"
+version = "0.1.0"
 
 [[package]]
 name = "memchr"

@@ -6,6 +6,7 @@ license.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+lodestone-packed = { path = "../packed" }
 blake3.workspace = true
 bytemuck.workspace = true
 memmap2.workspace = true

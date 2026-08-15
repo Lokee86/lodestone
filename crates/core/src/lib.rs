@@ -9,6 +9,7 @@ mod snapshot;
 mod transport;
 
 pub use error::{Error, Result};
+pub use lodestone_packed::{PackedVectorError, PackedVectors, ScalarType, VectorSchema};
 pub use materialize::materialize;
 pub use object::ObjectStore;
 pub use search::{SearchHit, search};
