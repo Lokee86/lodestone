@@ -9,6 +9,7 @@ This index owns future and unresolved engine, format, binding, and recovery work
 ## Direct files
 
 - [Roadmap](roadmap.md)
+- [Storage amplification and scale investigation (2026-11-11)](storage-amplification-and-scale-2026-11-11.md)
 
 ## Related docs
 
