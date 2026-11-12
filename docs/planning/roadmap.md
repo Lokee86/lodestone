@@ -17,8 +17,9 @@ Near-term work should harden publication and version evidence before introducing
 3. Add read-first diagnostic tooling for stale temp files, invalid snapshots, missing objects, and retained handle pressure.
 4. Define optional handle/mapping resource limits and observability for long-running consumers.
 5. Complete cross-platform Go binding verification and release packaging.
-6. Establish a measured storage-amplification, exact-search, and incremental-update baseline before selecting an ANN/indexing strategy; compare HNSW and IVF-based options, filtered recall, peak disk, and vector-payload duplication.
-7. Introduce new approximate indexes or numeric encodings only behind explicit format identities and measured compatibility plans. See [Storage amplification and scale investigation](storage-amplification-and-scale-2026-11-11.md).
+6. Pursue the [accepted architectural direction](../decisions/0003-canonical-packed-segments-and-derived-indexes.md): one canonical full-precision payload in immutable content-addressed packed segments, with derived search indexes referencing stable identities/locators rather than duplicating full vector matrices. Treat this as a future v2 design, not current behavior.
+7. Establish a measured storage-amplification, exact-search, and incremental-update baseline before selecting an ANN/indexing strategy; compare HNSW and IVF-based options, filtered recall, peak disk, and vector-payload duplication.
+8. Introduce new approximate indexes or numeric encodings only behind explicit format identities and measured compatibility plans. See [Storage amplification and scale investigation](storage-amplification-and-scale-2026-11-11.md).
 
 ## Related docs
 
