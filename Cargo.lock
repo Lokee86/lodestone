@@ -155,7 +155,7 @@ checksum = "32a66949e030da00e8c7d4434b251670a91556f4144941d37452769c25d58a53"
 
 [[package]]
 name = "lodestone-cli"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "lodestone-core",
  "serde_json",
@@ -163,7 +163,7 @@ dependencies = [
 
 [[package]]
 name = "lodestone-core"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "blake3",
  "bytemuck",
@@ -173,11 +173,12 @@ dependencies = [
  "serde",
  "serde_json",
  "tempfile",
+ "windows-sys",
 ]
 
 [[package]]
 name = "lodestone-ffi"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "lodestone-core",
  "tempfile",
@@ -185,7 +186,7 @@ dependencies = [
 
 [[package]]
 name = "lodestone-packed"
-version = "0.1.0"
+version = "0.2.0"
 
 [[package]]
 name = "memchr"

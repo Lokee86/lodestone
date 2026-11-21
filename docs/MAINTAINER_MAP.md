@@ -16,7 +16,8 @@ Storage and compatibility changes are cross-cutting even when the code edit is s
 | Snapshot layout and materialization | `materialize.rs`, `materialize_format.rs` | [Snapshots](SNAPSHOTS.md) | Determinism, layout, failure, and migration tests |
 | Snapshot validation and mmap | `snapshot.rs`, format modules | [Snapshots](SNAPSHOTS.md), [Operations](OPERATIONS.md) | Corruption and boundary fixtures |
 | Generic packed row representation | `crates/packed/src/lib.rs` | [Packed vectors](PACKED_VECTORS.md), [Architecture](ARCHITECTURE.md) | `lodestone-packed` unit tests |
-| Exact search and ranking order | `search.rs` | [Architecture](ARCHITECTURE.md) | Search tests and benchmark evidence |
+| Exact search and ranking order | `search.rs` | [Architecture](ARCHITECTURE.md) | Search tests and [packed-segment benchmark](development/packed-segment-benchmark.md) |
+| Packed segment publication, compaction, and reclamation | `crates/core/src/packed_store/` | [Packed store](PACKED_STORE.md) | Writer interruption, reopen, pinned-reader, and compaction parity tests |
 | C ABI symbols, buffers, errors, handles | `crates/ffi/`, `lodestone.h` | [ABI](ABI.md) | FFI tests and consumer integration |
 | Go loading and platform discovery | `bindings/go/lodestone/` | [Go binding README](../bindings/go/README.md), [ABI](ABI.md) | Windows/Linux binding tests |
 | Diagnostic CLI | `crates/cli/` | README and [Operations](OPERATIONS.md) | CLI smoke tests |

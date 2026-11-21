@@ -51,6 +51,7 @@ A new snapshot layout or numeric encoding requires a new explicit version and co
 
 ## Related docs
 
+- [Packed store generations and pinned readers](PACKED_STORE.md)
 - [Architecture](ARCHITECTURE.md)
 - [Immutable object storage](STORAGE.md)
 - [Operations and recovery](OPERATIONS.md)

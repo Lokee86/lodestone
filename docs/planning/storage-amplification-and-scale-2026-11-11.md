@@ -2,11 +2,11 @@
 
 Parent index: [Lodestone Planning](INDEX.md)
 
-## Status and scope
+## Purpose
 
 **Source-inspected analytical assessment, not an empirical cross-engine benchmark.** This records the storage/indexing discussion, derives current on-disk byte counts from the v1 implementation, and defines the measurements required to substantiate competitive claims. No comparative pgvector, Qdrant, or LanceDB disk-usage measurements have been performed for this report. It is not an ANN implementation decision.
 
-## Design thesis and constraints
+## Overview
 
 Lodestone's prospective advantage is a small embedded deployment and low **total persistent storage footprint**, rather than an invented vector similarity algorithm. Floating-point embedding payloads do not generally yield large *lossless* compression savings; eliminate storage/indexing overhead before introducing lossy representations. Preserve content-addressed immutable authority, validated memory-mapped reads, narrow FFI, and no required database service. However, mmap avoids duplicate **process heap** materialization; it does not reduce the number of persistent vector copies. Nor does a packed contiguous representation imply that the complete object store is packed once.
 
@@ -88,6 +88,10 @@ Create an **automated and reproducible** corpus/harness; record commit hashes, O
 4. Investigate vector-storage deduplication (single canonical vector payload with indirect search addressing or compact immutable segment objects). Preserve content identity and check mmap/random-access penalties.
 5. Consider f16/int8/PQ representations **only** as explicitly new indexed forms with full-precision rerank and measured retrieval quality; no silent v1 rewrite.
 
-## Relationship to existing plans
+## Related docs
+
+- [Packed-segment benchmark](../development/packed-segment-benchmark.md)
+
+## Notes
 
 This is research and prioritization, not a replacement for [current roadmap](roadmap.md): generation-safe publication, v1 compatibility fixtures, and cross-platform correctness are prerequisites for introducing new persisted index formats. Do not present any candidate as implemented.

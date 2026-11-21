@@ -70,32 +70,15 @@ pub(crate) fn write_snapshot(
     layout: Layout,
 ) -> Result<()> {
     let mut file = OpenOptions::new().write(true).create_new(true).open(path)?;
-    file.write_all(&encode_header(layout.header))?;
-    file.write_all(model.as_bytes())?;
-    write_padding(&mut file, layout.entries_offset - HEADER_SIZE - model.len())?;
-
-    let mut id_offset = 0_usize;
-    for record in records {
+    write_snapshot_prefix(&mut file, model, records, layout, |record| {
         let object = store.read(model, &record.source)?;
         if object.vector.len() != dimensions {
             return Err(Error::InvalidInput(
                 "all vectors must have equal dimensions".into(),
             ));
         }
-        let mut entry = [0_u8; ENTRY_SIZE];
-        put_u64(&mut entry, 0, id_offset as u64);
-        put_u32(&mut entry, 8, record.id.len() as u32);
-        entry[16..48].copy_from_slice(&object.hash);
-        file.write_all(&entry)?;
-        id_offset += record.id.len();
-    }
-    for record in records {
-        file.write_all(record.id.as_bytes())?;
-    }
-    write_padding(
-        &mut file,
-        layout.vectors_offset - layout.ids_offset - layout.ids_len,
-    )?;
+        Ok(object.hash)
+    })?;
     for record in records {
         for value in store.read(model, &record.source)?.vector {
             file.write_all(&value.to_le_bytes())?;
@@ -103,6 +86,35 @@ pub(crate) fn write_snapshot(
     }
     file.sync_all()?;
     Ok(())
+}
+
+pub(crate) fn write_snapshot_prefix(
+    file: &mut impl Write,
+    model: &str,
+    records: &[RecordRef],
+    layout: Layout,
+    mut object_hash: impl FnMut(&RecordRef) -> Result<[u8; 32]>,
+) -> Result<()> {
+    file.write_all(&encode_header(layout.header))?;
+    file.write_all(model.as_bytes())?;
+    write_padding(file, layout.entries_offset - HEADER_SIZE - model.len())?;
+
+    let mut id_offset = 0_usize;
+    for record in records {
+        let mut entry = [0_u8; ENTRY_SIZE];
+        put_u64(&mut entry, 0, id_offset as u64);
+        put_u32(&mut entry, 8, record.id.len() as u32);
+        entry[16..48].copy_from_slice(&object_hash(record)?);
+        file.write_all(&entry)?;
+        id_offset += record.id.len();
+    }
+    for record in records {
+        file.write_all(record.id.as_bytes())?;
+    }
+    write_padding(
+        file,
+        layout.vectors_offset - layout.ids_offset - layout.ids_len,
+    )
 }
 
 fn write_padding(file: &mut impl Write, count: usize) -> Result<()> {

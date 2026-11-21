@@ -81,7 +81,7 @@ pub struct PackedVectors {
 impl PackedVectors {
     pub fn from_bytes(schema: VectorSchema, bytes: Vec<u8>) -> Result<Self, PackedVectorError> {
         let row_bytes = schema.row_bytes()?;
-        if bytes.len() % row_bytes != 0 {
+        if !bytes.len().is_multiple_of(row_bytes) {
             return Err(PackedVectorError::PartialRow);
         }
         Ok(Self {

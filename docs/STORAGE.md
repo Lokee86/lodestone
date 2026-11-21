@@ -41,6 +41,7 @@ The v1 address domain is immutable. Changes to encoding, identity fields, numeri
 
 ## Related docs
 
+- [Packed store authoritative segment format](PACKED_STORE.md)
 - [Architecture](ARCHITECTURE.md)
 - [Snapshot format and publication](SNAPSHOTS.md)
 - [Operations and recovery](OPERATIONS.md)

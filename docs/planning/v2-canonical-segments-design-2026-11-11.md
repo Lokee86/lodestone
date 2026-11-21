@@ -2,7 +2,13 @@
 
 Parent index: [Lodestone Planning](INDEX.md)
 
-**Status: Proposed, not implemented or accepted as a binary/ABI contract.** [ADR-0003](../decisions/0003-canonical-packed-segments-and-derived-indexes.md) accepts the *direction* only. This document makes the architecture reviewable and identifies decisions that require prototypes or follow-up ADRs. Existing [Storage](../STORAGE.md), [Snapshots](../SNAPSHOTS.md), [Architecture](../ARCHITECTURE.md) and [Operations](../OPERATIONS.md) remain the authoritative **v1** behavior.
+## Purpose
+
+Describe a candidate packed-segment architecture and the acceptance criteria for adopting it.
+
+## Overview
+
+This proposal records the broader direction accepted by [ADR-0003](../decisions/0003-canonical-packed-segments-and-derived-indexes.md). The [packed store contract](../PACKED_STORE.md) describes the implemented single-profile Rust publication path. The v1 [Storage](../STORAGE.md) and [Snapshots](../SNAPSHOTS.md) documents describe the original formats and their publication behavior.
 
 ## Goals and non-goals
 
@@ -123,8 +129,9 @@ Bindings/ABI: new v2 capabilities and handles need explicit negotiation or versi
 6. **Controlled migration:** dual-read, parity, rollback and versioned ABI negotiation. Exit: v1 data remains usable and consumer compatibility is proven.
 7. **Optional acceleration only if needed:** sound exact pruning first; ANN considered separately against actual workload latency/recall constraints.
 
-## Evidence and relationships
+## Related docs
 
+- [Packed-segment benchmark](../development/packed-segment-benchmark.md)
 - [Corrected source audit and performance model](exact-search-source-audit-2026-11-11.md)
 - [Storage-amplification byte model](storage-amplification-and-scale-2026-11-11.md)
 - [ADR-0001: v1 format identity](../decisions/0001-preserve-v1-format-identity.md)
@@ -133,4 +140,6 @@ Bindings/ABI: new v2 capabilities and handles need explicit negotiation or versi
 - [Lance format architecture](https://lance.org/format/)
 - [LSM-tree paper](https://db.cs.berkeley.edu/cs286/papers/lsm-acta1996.pdf)
 
-**No code, format, ABI or publication behavior changes are made by this proposal.**
+## Notes
+
+The packed store can repack a generation into fewer immutable segments and publish it through the same boundary as append. Explicit reclamation protects the current generation and any manifest pinned by an open reader. [Compaction contract](../PACKED_STORE.md#compaction) · [Reclamation contract](../PACKED_STORE.md#reclamation)

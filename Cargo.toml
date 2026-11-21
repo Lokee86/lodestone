@@ -4,9 +4,9 @@ resolver = "2"
 
 [workspace.package]
 edition = "2024"
-license = "Apache-2.0"
+license = "MIT"
 rust-version = "1.90"
-version = "0.1.0"
+version = "0.2.0"
 
 [workspace.dependencies]
 blake3 = "1.8"

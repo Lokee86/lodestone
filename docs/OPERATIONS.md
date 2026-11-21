@@ -45,6 +45,7 @@ Immutable object stores are suitable for incremental file backup. A snapshot can
 
 ## Related docs
 
+- [Packed store commit, recovery, and retries](PACKED_STORE.md)
 - [Immutable object storage](STORAGE.md)
 - [Snapshot format and publication](SNAPSHOTS.md)
 - [C ABI and language bindings](ABI.md)

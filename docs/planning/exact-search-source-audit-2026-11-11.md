@@ -2,7 +2,11 @@
 
 Parent index: [Lodestone Planning](INDEX.md)
 
-## Status and decision boundary
+## Purpose
+
+Audit the exact-search research and establish evidence requirements for the packed-segment design.
+
+## Overview
 
 **Desk research and source audit; no Lodestone or competitor performance measurements were run.** This is a corrected, narrower synthesis of the Deep Research survey, emphasizing **exact nearest-neighbor search and compact, embedded, file-native architectures**. It is not a claim of performance superiority and does not select ANN. The companion [v2 design proposal](v2-canonical-segments-design-2026-11-11.md) is a **proposal**, while [ADR-0003](../decisions/0003-canonical-packed-segments-and-derived-indexes.md) accepts only the direction.
 
@@ -92,6 +96,10 @@ These are **scenario calculations**, not predictions or benchmark measurements. 
 
 No broad ANN benchmark campaign is required for the first v2 milestone. Document hardware, versions and reproducibility before interpreting any measured difference.
 
-## Follow-up
+## Related docs
+
+- [Packed-segment benchmark](../development/packed-segment-benchmark.md)
+
+## Notes
 
 See [v2 canonical segments design proposal](v2-canonical-segments-design-2026-11-11.md), [ADR-0003](../decisions/0003-canonical-packed-segments-and-derived-indexes.md), and [roadmap](roadmap.md). This audit does **not** amend the implemented v1 contracts in [Storage](../STORAGE.md) or [Snapshots](../SNAPSHOTS.md).

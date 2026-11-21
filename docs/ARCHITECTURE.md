@@ -72,6 +72,7 @@ Lodestone does not own:
 
 ## Related docs
 
+- [Packed store and published generations](PACKED_STORE.md)
 - [Immutable object storage](STORAGE.md)
 - [Snapshot format and publication](SNAPSHOTS.md)
 - [C ABI and language bindings](ABI.md)

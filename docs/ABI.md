@@ -48,4 +48,6 @@ Removing legacy symbols requires explicit consumer migration evidence and a supe
 
 ## Notes
 
+The packed store exposes publication and pinned search views through its [Rust API](PACKED_STORE.md).
+
 Platform library discovery belongs to each language binding. The C ABI remains the canonical cross-runtime contract.

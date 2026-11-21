@@ -10,7 +10,7 @@ Owners: Lodestone core storage, publication and search
 Supersedes: none
 Superseded by: none
 
-## Context
+## Overview
 
 Lodestone v1 preserves vectors in content-addressed immutable object files and duplicates full `f32` payloads in packed materialized snapshots. This gives independently validated immutable writes and contiguous mmap-friendly exact scanning, but incurs approximately two full payload copies when every active row has a unique object and one snapshot is retained. Small object files also incur filesystem overhead. See the [storage-amplification investigation](../planning/storage-amplification-and-scale-2026-11-11.md) for the actual byte model and its assumptions. Neither total disk superiority over competitors nor an ANN winner has been measured.
 
@@ -49,7 +49,12 @@ Continuously updated, larger collections also need incremental index maintenance
 - **Make HNSW itself authoritative:** rejected; search topology is rebuildable and should not define canonical vector identity or durability.
 - **Store only a packed snapshot with no separate content identities:** rejected because it loses object-level integrity/identity and generation recovery properties.
 
-## Consequences and follow-up
+## Related docs
+
+- [Packed store publication contract](../PACKED_STORE.md)
+- [Packed-segment benchmark](../development/packed-segment-benchmark.md)
+
+## Notes
 
 This direction makes vector identity distinct from physical location, raises the importance of generation-scoped reference/GC management and requires new persisted contracts. It may remove most steady-state vector duplication **if measurements validate the design**, while leaving authoritative immutable bytes independent of chosen search indexes.
 

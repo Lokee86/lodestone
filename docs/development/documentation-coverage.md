@@ -17,6 +17,8 @@ Coverage follows persisted and cross-runtime responsibility rather than package 
 | `crates/core/src/snapshot.rs` and format modules | Snapshot validation and mmap lifetime | [Snapshots](../SNAPSHOTS.md), [Architecture](../ARCHITECTURE.md) |
 | `crates/packed/src/lib.rs` | Filesystem-independent scalar schema and contiguous fixed-width vector rows | [Packed vectors](../PACKED_VECTORS.md), [Architecture](../ARCHITECTURE.md) |
 | `crates/core/src/search.rs` | Exact nearest-neighbour scan and deterministic top-K ordering | [Architecture](../ARCHITECTURE.md), [Behavioral contracts](../BEHAVIORAL_CONTRACT_MATRIX.md) |
+| `crates/core/src/packed_store/` | Packed profile, immutable segments, durable manifests, compaction, generation views, and reclamation | [Packed store](../PACKED_STORE.md) |
+| `crates/core/src/benchmark/`, `crates/core/tests/v1_compatibility.rs` | Packed-segment comparison and frozen v1 storage fixtures | [Packed-segment benchmark](packed-segment-benchmark.md), [Behavioral contracts](../BEHAVIORAL_CONTRACT_MATRIX.md) |
 | `crates/ffi/`, `crates/ffi/include/lodestone.h` | C ABI symbols, caller buffers, errors, panics, handles, concurrency | [ABI](../ABI.md), [Operations](../OPERATIONS.md) |
 | `bindings/go/lodestone/` | Go library discovery, symbol loading, and Go-facing lifecycle | [ABI](../ABI.md), binding README |
 | `crates/cli/` | Diagnostic ingest, build, inspect, and search composition | Repository README, [Operations](../OPERATIONS.md) |

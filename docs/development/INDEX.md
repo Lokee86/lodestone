@@ -9,6 +9,7 @@ This index owns implementation coverage and contributor-facing verification rout
 ## Direct files
 
 - [Documentation coverage](documentation-coverage.md)
+- [Packed-segment benchmark](packed-segment-benchmark.md)
 
 ## Related docs
 

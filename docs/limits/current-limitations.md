@@ -12,7 +12,7 @@ Lodestone has strong immutable storage and validation, but snapshot replacement,
 
 ## Limitations
 
-### Existing-target snapshot replacement
+### Existing-target v1 snapshot replacement
 
 The builder writes a complete temporary file, but on platforms where rename cannot replace an existing target it removes the target before retrying. A path opener can observe a missing-target window, and failure after removal can leave the target unavailable.
 
@@ -38,9 +38,9 @@ Corrupt objects and snapshots are rejected and rebuilt from authoritative applic
 
 ### Publication availability contract
 
-Generation-named files are recommended for strict availability, but an application-owned pointer format and switch protocol are not standardized by Lodestone.
+V1 consumers that require uninterrupted availability can use generation-named snapshots. The packed store has [Rust publication and reclamation contracts](../PACKED_STORE.md) with verified process interruption recovery. Reclamation protects the current generation and those with open readers.
 
-**Removal condition:** a measured shared generation-publication contract proves crash, replacement, and concurrent-open behavior across supported platforms.
+**Removal condition:** supported consumers can use the packed-store publication contract.
 
 ## Related docs
 

@@ -22,7 +22,11 @@ cargo build -p lodestone-cli --release
 
 On Windows the library is emitted as `target/release/lodestone_ffi.dll`; the command-line executable is `target/release/lodestone.exe`.
 
-## Storage model
+## Packed store
+
+Rust applications can write full-precision vectors once with `PackedStore` and search a pinned generation with exact dot products. The packed store supports durable append, compaction and reclamation. Applications that already publish their own immutable packed matrices can call `search_packed_cosine` on those rows directly. [Packed store guide](docs/PACKED_STORE.md)
+
+## V1 storage model
 
 Each immutable vector object is addressed by BLAKE3 over:
 
@@ -110,4 +114,4 @@ The Go binding loads the ABI dynamically on Windows and Linux. Linux requires cg
 
 Version 1 stores aligned `float32` vectors. Quantized encodings are intentionally deferred until retrieval-quality and end-to-end latency benchmarks justify them.
 
-Licensed under Apache 2.0.
+Licensed under the [MIT License](LICENSE.md).
